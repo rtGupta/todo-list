@@ -19,10 +19,38 @@ class TodoList extends React.Component {
         fetchTodoList();
     }
 
-    render() {
-        const todoList = this.state.todos?.map((todo, i) => {
-            return <TodoItem key={todo.id} todo={todo} />
+    async markTodoComplete(id) {
+        const payload = {
+            completed: !this.state.todos?.find(todo => todo.id === id).completed
+        };
+        const updatedTodo = await APIHelper.updateTodo(id, payload);
+        const updatedTodos = this.state.todos.map(todo => (todo.id === id) ? updatedTodo : todo);
+        this.setState({
+            todos: updatedTodos
         });
+    }
+
+    async deleteTodo(id) {
+        try {
+            const response = await APIHelper.deleteTodo(id);
+            const remainingTodos = this.state.todos.filter((todo) => todo.id !== id);
+            this.setState({
+                todos: remainingTodos
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    render() {
+        const todoList = this.state.todos?.map((todo, i) => (
+            <TodoItem 
+                key={todo.id} 
+                todo={todo}
+                markTodoComplete={this.markTodoComplete.bind(this)}
+                deleteTodo={this.deleteTodo.bind(this)}
+            />
+        ));
 
         return (
             <div className='content'>
