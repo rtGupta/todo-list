@@ -22,7 +22,11 @@ class TodoItem extends React.Component {
                             type="checkbox" 
                             defaultChecked={this.props.todo?.completed}
                             onChange={() => this.props.markTodoComplete(this.props.todo?.id)} />
-                        <label className='todo-label' htmlFor={this.props.todo?.id}>{this.props.todo?.title}</label>
+                        <label 
+                            className='todo-label' 
+                            htmlFor={this.props.todo?.id} 
+                            style={{textDecoration: this.props.todo?.completed ? 'line-through' : 'auto'}}
+                        >{this.props.todo?.title}</label>
                     </div>
                     <div className='button-group'>
                         <button type='button' onClick={this.showDetails.bind(this)}>

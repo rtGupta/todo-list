@@ -1,12 +1,15 @@
 import React from 'react';
 import APIHelper from './../api/APIHelper';
 import TodoItem from './TodoItem';
+import AddTodo from './AddTodo';
 
 class TodoList extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            todos: []
+            todos: [],
+            showForm: false,
+            showList: true
         }
     }
 
@@ -42,6 +45,28 @@ class TodoList extends React.Component {
         }
     }
 
+    showAddTodoForm() {
+        this.setState({
+            showForm: true,
+            showList: false
+        });
+    }
+
+    showTodoList() {
+        this.setState({
+            showForm: false,
+            showList: true
+        });
+    }
+
+    async addTodo(newTodo) {
+        const newTodos = [...this.state.todos, newTodo];
+        this.setState({
+            todos: newTodos
+        });
+        this.showTodoList();
+    }
+
     render() {
         const todoList = this.state.todos?.map((todo, i) => (
             <TodoItem 
@@ -57,16 +82,17 @@ class TodoList extends React.Component {
                 <div id='todos'>
                     <div className='all-tasks-header'>
                         <h3>TODO's</h3>
-                        <button id='add-btn'>
+                        <button id='add-btn' onClick={this.showAddTodoForm.bind(this)}>
                             <img src={require('./../assets/add-task.png')} alt='Add Task' />
                         </button>
                     </div>
                     <hr />
-                    <div id='todo-list'>
+                    {this.state.showForm && <AddTodo addTodoHandler={this.addTodo.bind(this)} cancel={this.showTodoList.bind(this)} />}
+                    {this.state.showList && <div id='todo-list'>
                         <ul id='todo-ul'>
                             {todoList}
                         </ul>
-                    </div>
+                    </div>}
                 </div>
             </div>
         )
