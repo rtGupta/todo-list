@@ -1,0 +1,18 @@
+body {
+  padding: 10px 20px;
+}
+
+.header {
+  @include flex-display(row, center);
+  align-items: center;
+  img {
+    width: 8%;
+    height: auto;
+  }
+}
+
+.title {
+  padding: 0% 5%;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 3em;
+}

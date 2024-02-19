@@ -1,0 +1,13 @@
+// Flexbox Layout mixin.
+@mixin flex-display($flex-direction, $justify-content, $align-items: normal) {
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+// Style the icons.
+@mixin style-img($width) {
+    width: $width;
+    height: auto;
+}

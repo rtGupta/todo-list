@@ -1,0 +1,136 @@
+.content {
+  @include flex-display(column, center, center);
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 50px;
+
+  ul {
+    width: 500px;
+    margin-left: -40px;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.all-tasks-header {
+  @include flex-display(row, space-between, center);
+
+  h3 {
+    margin: 0px;
+  }
+
+  button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 10%;
+
+    img {
+      @include style-img(100%);
+    }
+  }
+}
+
+.todo-item-li {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  background-color: $color-white;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px 20px;
+}
+
+.item-card {
+  @include flex-display(row, space-evenly, center);
+
+  button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 40%;
+    float: right;
+
+    img {
+      @include style-img(100%);
+    }
+  }
+}
+
+.item-content {
+  width: 80%;
+  font-size: 1.25em;
+
+  label {
+    margin-left: 10px;
+  }
+}
+
+.button-group {
+  width: 20%;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.item-details {
+  @include flex-display(column, space-evenly, start);
+  color: $color-gray;
+  width: 80%;
+  margin-left: 10%;
+
+  p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  span {
+    font-size: 12px;
+  }
+}
+
+.add-task {
+  @include flex-display(column, center, normal);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  background-color: $color-white;
+  border-radius: 5px;
+  padding: 20px;
+
+  h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    margin-top: 0px;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid $color-input-border;
+    border-radius: 5px;
+    margin: 10px 0px;
+  }
+
+  .form-control {
+    @include flex-display(row, space-between, center);
+
+    div {
+      margin: 0px 5px 0px 0px;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: 1px solid $color-black;
+    border-radius: 5px;
+    background-color: $color-black;
+    color: white;
+    padding: 10px;
+    margin: 0px 10px 0px 0px;
+    width: 50%;
+  }
+
+  .add-button-group {
+    @include flex-display(row, space-between, normal);
+    padding: 10px;
+  }
+}
