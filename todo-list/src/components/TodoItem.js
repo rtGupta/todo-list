@@ -3,6 +3,13 @@ import React from 'react';
 class TodoItem extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showTodoDetails: false
+        }
+    }
+
+    showDetails() {
+        this.setState({ showTodoDetails: !this.state.showTodoDetails});
     }
 
     render() {
@@ -14,7 +21,7 @@ class TodoItem extends React.Component {
                         <label className='todo-label' htmlFor={this.props.todo?.id}>{this.props.todo?.title}</label>
                     </div>
                     <div className='button-group'>
-                        <button type='button'>
+                        <button type='button' onClick={this.showDetails.bind(this)}>
                             <img src={require('./../assets/view-icon.png')} alt='View Todo' />
                         </button>
                         <button>
@@ -22,6 +29,12 @@ class TodoItem extends React.Component {
                         </button>
                     </div>
                 </div>
+                { this.state.showTodoDetails && 
+                    <div className='item-details'>
+                        <p>{this.props.todo?.description}</p>
+                        <span>Due By: {this.props.todo?.dueDate} {this.props.todo?.dueTime}</span>
+                    </div>
+                }
             </li>
         )
     }

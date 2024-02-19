@@ -21,7 +21,7 @@ class TodoList extends React.Component {
 
     render() {
         const todoList = this.state.todos?.map((todo, i) => {
-            return <TodoItem todo={todo} />
+            return <TodoItem key={todo.id} todo={todo} />
         });
 
         return (
